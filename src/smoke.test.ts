@@ -1,5 +1,5 @@
-import { expect, it } from "vitest";
-
-it("smoke test", () => {
-  expect(1).toBe(1);
+describe('smoke', () => {
+  it('runs the toolchain', () => {
+    expect(1).toBe(1);
+  });
 });
