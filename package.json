@@ -1,16 +1,19 @@
 {
-  "name": "test-env",
-  "private": true,
-  "type": "module",
-  "scripts": {
-    "test": "vitest run",
-    "t": "vitest run --reporter=verbose",
-    "watch": "vitest --reporter=verbose",
-    "typecheck": "tsc --noEmit",
-    "check": "npm run typecheck && npm test"
+  "name": "testenv",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "directories": {
+    "test": "tests"
   },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
   "devDependencies": {
-    "@types/node": "^24.0.0",
     "typescript": "^7.0.2",
     "vitest": "^5.0.5"
   }
