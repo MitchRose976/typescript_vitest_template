@@ -20,7 +20,7 @@ describe("remove duplicate users", () => {
     it("should return an empty set for an empty array", () => {
         const users: { id: string, name: string }[] = [];
         const result = solution(users);
-        expect(result).toEqual(new Set());
+        expect(result).toEqual([]);
     });
 
     it("should preserve the order of first occurrences", () => {
