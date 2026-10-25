@@ -94,7 +94,10 @@ describe("totalByCustomerAbove", () => {
   });
 
   it("defaults the threshold to 100", () => {
-    const totals = solution([order("1", "a", 60), order("2", "a", 60)]);
+    const totals = solution(
+      [order("1", "a", 60), order("2", "a", 60), order("3", "b", 50)],
+      100,
+    );
 
     expect(totals).toEqual(new Map([["a", 120]]));
   });
