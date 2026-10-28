@@ -30,5 +30,20 @@ export const findTimestampRange = (
   start: number,
   end: number,
 ): [number, number] | null => {
-  throw new Error("Not implemented");
+  if (timestamps.length === 0) return null;
+  if (start === end) return null;
+  if (start > timestamps[timestamps.length - 1]) return null;
+  if (end <= timestamps[0]) return null;
+
+  const startIndex = timestamps.findIndex(t => t >= start);
+  if (startIndex === -1) {
+    return null;
+  } else {
+    for (let i = startIndex; i < timestamps.length; i++) {
+      if (timestamps[i] >= end) {
+        return [startIndex, i];
+      }
+    }
+  }
+  return [startIndex, timestamps.length];
 };
