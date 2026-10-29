@@ -37,5 +37,68 @@ export const solution10 = (
   tasks: readonly string[],
   dependencies: readonly (readonly [string, string])[],
 ): string[] | null => {
-  throw new Error("Not implemented");
+  if (tasks.length === 0) return [];
+  if (dependencies.length === 0) return [...tasks];
+
+  const result = [];
+
+  // Create map of dependencies and their prerequisites
+  // [task1, task2, task3, task4, task5]
+  //   {
+  //     'task1': ['task2', 'task4', 'task5'],
+  //     "task2": ["task3"],
+  //     "task3": ["task4"]
+  //   }
+  const depsMap = new Map<string, Set<string>>();
+  const duplicateDeps = new Set<string>();
+  for (const [pre, dep] of dependencies) {
+    const depKey = `${pre}-${dep}`;
+    if (duplicateDeps.has(depKey)) continue;
+    duplicateDeps.add(depKey);
+
+    if (!depsMap.has(dep)) {
+      depsMap.set(dep, new Set());
+    }
+    depsMap.get(dep)!.add(pre);
+  }
+
+  const visiting = new Set<string>();
+  const seen = new Set<string>();
+  let cycleDetected = false;
+
+  depsMap.forEach((preReqs, taskId) => {
+    const loopPrereqs = (preReqs: string[]) => {
+      if (preReqs.length === 0) return;
+
+      for (const pre of preReqs) {
+        if (visiting.has(pre)) {
+          cycleDetected = true;
+          return;
+        }
+
+        if (!seen.has(pre)) {
+          visiting.add(pre);
+          loopPrereqs(Array.from(depsMap.get(pre) || []));
+          visiting.delete(pre);
+          seen.add(pre);
+          result.push(pre);
+        }
+      }
+    };
+
+    if (!seen.has(taskId)) {
+      visiting.add(taskId);
+      loopPrereqs(Array.from(preReqs));
+      visiting.delete(taskId);
+      seen.add(taskId);
+    }
+  });
+
+  for (const task of tasks) {
+    if (!result.includes(task)) {
+      result.push(task);
+    }
+  }
+
+  return cycleDetected ? null : result;
 };
