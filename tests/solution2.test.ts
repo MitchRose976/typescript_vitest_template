@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import { solution } from "../src/solution2";
+import { solution } from "../src/solutions/solution2";
 
 describe("remove duplicate users", () => {
     it("should return a set of unique user IDs", () => {

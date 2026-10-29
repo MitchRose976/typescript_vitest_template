@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import { solution, Order } from "../src/solution";
+import { solution, Order } from "../src/solutions/solution";
 
 const order = (id: string, customerId: string, amount: number): Order => ({
   id,

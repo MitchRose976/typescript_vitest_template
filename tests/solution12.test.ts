@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { solution12 } from "../src/solution12";
+import { solution12 } from "../src/solutions/solution12";
 
 describe("solution12", () => {
   it("returns -1 for an empty array", () => {

@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { findTimestampRange } from "../src/solution9";
+import { findTimestampRange } from "../src/solutions/solution9";
 
 describe("findTimestampRange", () => {
   it("returns null for an empty array", () => {

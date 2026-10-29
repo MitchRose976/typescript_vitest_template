@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import { solution4 } from "../src/solution4";
+import { solution4 } from "../src/solutions/solution4";
 
 type Status = "draft" | "scheduled" | "published";
 type Post = { id: string; status: Status };

@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { admitRequests } from "../src/solution6";
+import { admitRequests } from "../src/solutions/solution6";
 
 describe("admitRequests", () => {
   it("counts duplicate request entries independently", () => {

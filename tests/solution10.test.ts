@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { solution10 } from "../src/solution10";
+import { solution10 } from "../src/solutions/solution10";
 
 const expectValidTaskOrder = (
   tasks: readonly string[],

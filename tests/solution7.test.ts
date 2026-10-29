@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { planTasks } from "../src/solution7";
+import { planTasks } from "../src/solutions/solution7";
 
 describe("planTasks", () => {
   it("returns [] when taskIds is empty", () => {

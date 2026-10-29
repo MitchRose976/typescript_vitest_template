@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import { solution5 } from "../src/solution5";
+import { solution5 } from "../src/solutions/solution5";
 
 describe("solution5 > first non-repeating character", () => {
   it("returns null for an empty string", () => {

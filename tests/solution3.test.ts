@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import { solution3 } from "../src/solution3";
+import { solution3 } from "../src/solutions/solution3";
 
 type Range = number[];
 

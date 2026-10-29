@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { LruCache } from "../src/solution11";
+import { LruCache } from "../src/solutions/solution11";
 
 describe("LruCache", () => {
   it("returns undefined for a missing key", () => {
