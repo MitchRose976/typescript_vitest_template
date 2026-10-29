@@ -33,6 +33,11 @@
  * solution10(["a", "b"], [["a", "b"], ["b", "a"]]) returns null.
  */
 
+/*
+
+
+DFS SOLUTION
+
 export const solution10 = (
   tasks: readonly string[],
   dependencies: readonly (readonly [string, string])[],
@@ -101,4 +106,76 @@ export const solution10 = (
   }
 
   return cycleDetected ? null : result;
+};
+*/
+
+// DFS SOLUTION
+
+export const solution10 = (
+  tasks: readonly string[],
+  dependencies: readonly (readonly [string, string])[],
+): string[] | null => {
+  const allTasks = new Set(tasks);
+  const indegree = new Map<string, number>();
+  const adjacency = new Map<string, string[]>();
+
+  for (const task of tasks) {
+    indegree.set(task, 0);
+    adjacency.set(task, []);
+  }
+
+
+
+  for (const [prerequisite, dependent] of dependencies) {
+    if (!allTasks.has(prerequisite) || !allTasks.has(dependent)) continue;
+
+    adjacency.get(prerequisite)!.push(dependent);
+    indegree.set(dependent, (indegree.get(dependent) ?? 0) + 1);
+  }
+
+    // tasks = [task1, task2, task3, task4, task5]
+  // dependancies = [[task2, task1], [task4, task1], [task5, task1], [task3, task2], [task4, task3]]
+
+  // indegree = {
+  //   'task1': 3, -> 2 -> 1
+  //   'task2': 1,
+  //   'task3': 1, -> 0
+  //   'task4': 0,
+  //   'task5': 0
+  // }
+
+  // adjacency = {
+  //   'task1': [],
+  //   'task2': [task1],
+  //   'task3': [task2],
+  //   'task4': [task1, task3],
+  //   'task5': [task1]
+  // }
+
+  // queue = [task4, task5] -> [task5] -> []
+
+  // result = [] -> [task4] -> [task4, task3] -> [task4, task3, task5]
+
+  const queue: string[] = [];
+  for (const [task, degree] of indegree) {
+    if (degree === 0) {
+      queue.push(task);
+    }
+  }
+
+  const result: string[] = [];
+  while (queue.length > 0) {
+    const current = queue.shift()!;
+    result.push(current);
+
+    for (const next of adjacency.get(current) ?? []) {
+      const nextDegree = (indegree.get(next) ?? 0) - 1;
+      indegree.set(next, nextDegree);
+      if (nextDegree === 0) {
+        queue.push(next);
+      }
+    }
+  }
+
+  return result.length === tasks.length ? result : null;
 };
